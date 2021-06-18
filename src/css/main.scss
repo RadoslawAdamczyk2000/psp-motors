@@ -1,0 +1,668 @@
+// IMPORT
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// VARIABLES
+
+@mixin background{background-attachment: fixed;background-size:cover;background-repeat:no-repeat;background-position:cover;}
+@mixin center{top: 50%;left: 50%;transform: translate(-50%,-50%);}
+@mixin center_absolute{@include center;position: absolute;}
+@mixin centerX{position:relative;left: 50%;transform: translateX(-50%);}
+@mixin center_flex{display: flex;align-items: center;justify-content: center;}
+@mixin center_flex_text{@include center_flex;text-align: center;}
+@mixin center_flex_evenly{@include center_flex;justify-content: space-evenly;}
+@mixin center_flex_evenly_text{@include center_flex_evenly;text-align: center;}
+@mixin flex_column{flex-wrap:wrap;flex-direction: column;}
+@mixin Poppins{font-family: 'Poppins', sans-serif;}
+@mixin OpenSans{font-family: 'Open Sans', sans-serif;}
+@mixin Bitter {font-family: 'Bitter', serif;}
+@mixin grid_column{grid-column:1/-1;}
+$black:#101111;
+$silver:#a9a09f;
+$grey:#83848c;
+$white:#f2f2f2;
+$red:#EE0000;
+$red_lighter:#EE0000;
+
+// ANOTHER CLASSES
+
+.active{background:$white;padding:2px 3px;}
+
+// PAGE
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+body{
+    @include Bitter;
+    display: grid;
+    grid-template-columns: repeat(24,1fr);
+    background: $black;
+}
+nav{
+    @include grid_column;
+    @include center_flex_evenly;
+    background: $red_lighter;
+    flex-wrap: wrap;
+    padding:.3em 0;
+    a{
+        color: $black;
+    }
+    .name__website{
+        flex:1;
+        flex-shrink: 1;
+        text-align: center;
+        font-weight: 900;
+        font-size: 1.85rem;
+        font-style: italic;
+        text-shadow:-8px 0 5px rgba(128, 128, 128, 0.575);
+    }
+    menu{
+        font-weight: 600;
+        flex:5;
+        flex-shrink: 5;
+        .menu__content{
+            @include center_flex_evenly_text;
+            .menu__item{
+                font-size: 1.45rem;
+                position: relative;
+                .menu__link{
+                    letter-spacing: .1em;
+                    transition:.2s linear;
+                }
+                .menu__link:hover{
+                    opacity: 0.9;
+                    transition:.2s linear;
+                }
+            }
+            .menu__item::before{
+                content: '';
+                @include centerX;
+                position: absolute;
+                bottom: 0;
+                width:0;
+                height: 0.1em;
+                background: $black;
+                opacity: 0.85;
+                transition:.2s linear;
+            }
+            .menu__item:hover::before{
+                transition:.2s linear;
+                width: 100%;
+            }
+        }
+    }
+}
+header{
+    @include grid_column;
+    @include background;
+    background-image: url("../../../assets/images/motor-pixabay/Alrendo\ motorcycles\ 133958161705230_o.jpg");
+    overflow: hidden;
+    height: 90vh;
+    max-height: 100vh;
+    position: relative;
+    h1{
+        @include center_absolute;
+        @include center_flex;
+        font-size: 60px;
+        text-align: center;
+        color: $white;
+        padding:7px 12px;
+        cursor: default;
+        z-index: 1;
+        background: #0707078a;
+        width: 100%;
+        height: 100%;
+        text-shadow:0 0 15px $black;
+    }
+}
+main{
+    @include grid_column;
+    @include centerX;
+    width: 90vw;
+    height: auto;
+    margin:3em 0;
+    color: $red;
+    cursor: default;
+    h2{
+        text-shadow:0 0 15px $black;
+        text-align: center;
+        color: $white;
+        position: relative;
+        font-size: 3.5em;
+        text-transform: uppercase;
+        cursor: default;
+    }
+    h2::before{
+        content: '';
+        position: absolute;
+        bottom: .2em;
+        height: 0.2em;
+        border-radius: .6em;
+        background: $red_lighter;
+        z-index: -1;
+        width: 50%;
+        left: 0;
+    }
+    article{
+        @include Poppins;
+        margin:2em 0;
+    }
+}
+.start{
+    overflow-x: hidden;
+    article{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        padding:.5em;
+        grid-gap: 0.5em;
+        figure{
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            img{
+                @include center;
+                position: absolute;
+                width: 100%;
+            }
+        }
+        .text{
+            @include center_flex;
+            @include flex_column;
+            padding:.65em;
+            border:.3em solid $red_lighter;
+            color: $white;
+            h3{
+                width: 100%;
+                text-align: center;
+                font-size: 2.7em;
+                position: relative;
+            }
+            p{
+                font-size: 1.15em;
+                text-indent:1.2em;
+                margin:.65em 0;
+                text-align: center;
+            }
+            a{
+                @include center_flex_text;
+                color:$white;
+                margin:1em 0;
+                font-size: 1.45em;
+                padding: 7px 12px;
+                position: relative;
+                z-index: 1;
+                font-weight: 600;
+            }
+            a::before,a::after{
+                @include centerX;
+                content: '';
+                position: absolute;
+                bottom: 0;
+            }
+            a::before{
+                width: 0;
+                height: 0.15em;
+                background: $red;
+                transition:.2s .2s linear;
+            }
+            a:hover::before{
+                width: 100%;
+                transition:.2s  linear;
+            }
+            a::after{
+                width: 100%;
+                height: 0;
+                background: $red_lighter;
+                transition:.2s linear;
+                z-index: -1;
+            }
+            a:hover::after{
+                height: 100%;
+                transition:.2s .2s linear;
+            }
+        }
+        .text:nth-child(even){
+            h3::before{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 55%;
+                height: 0.15em;
+                background: $red_lighter;
+            }
+        }
+        .text:nth-child(odd){
+            h3::before{
+                content: '';
+                position: absolute;
+                bottom: 0;
+               left: 0;
+                width: 55%;
+                height: 0.15em;
+                background: $red_lighter;
+            }
+        }
+    }
+    .photos{
+        @include center_flex_evenly_text;
+        flex-wrap: wrap;
+        margin:0;
+        padding:0;
+        grid-gap: 0;
+        figure{
+            width:calc(100% / 3 - 5px);
+            margin:0;
+            padding:0;
+            img{
+                width: 90%;
+                margin:none;
+                padding:none;
+                filter:grayscale(95%) brightness(80%) sepia(20%);
+        
+            }
+        }
+    }
+}
+.firma,.walory,.doradztwo,.oferta{
+    article{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap:wrap;
+        color: $white;
+        font-weight: 400;
+        section{
+            @include center_flex;
+            width: 50%;
+            margin:1em 0;
+            figure{
+                @include center_flex;
+                background: black;
+                overflow: hidden;
+                padding: 0.5em;
+                img{
+                    width: 100%;
+                    filter:brightness(120%) sepia(40%) grayscale(40%);
+                }
+            }
+            p{
+                padding: 0.8em;
+                text-align: center;
+                font-size: 1.1em;
+                border:.3em solid $red_lighter;
+                border-radius:.7em;
+            }
+        }
+        
+    }
+}
+footer{
+    @include grid_column;
+    @include Poppins;
+    .socials{
+        @include center_flex_evenly_text;
+        font-size: 2em;
+        margin:.45em 0;
+        .social{
+            color: $red;
+            transition:.2s linear;
+            position: relative;
+            width: 3rem;
+            height: 3rem;
+        }
+        .social:hover{
+            transition:.2s linear;
+            transform:scale(.8);
+        }
+        .social::before,.social::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition:.2s linear;
+        }
+        .social:hover::after{
+            border-left:2px solid $red;
+            border-right:2px solid $red;
+            transform: skewX(20deg);
+            transition:.2s linear;
+        }
+        .social:hover::before{
+            border-top:2px solid $red;
+            border-bottom:2px solid $red;
+            transform: skewY(-20deg);
+            transition:.2s linear;
+        }
+    }
+    .map{
+        @include center_flex;
+        iframe{
+            width: 100%;
+        }
+    }
+    address{
+        @include center_flex_evenly_text;
+        padding:.45em 0;
+       section{
+            @include center_flex;
+            margin:.35em 0;
+            flex-wrap: wrap;
+            flex-direction: column;
+            font-weight: 600;
+            color: $white;
+            i{
+                font-size: 2.1em;
+            }
+            a{
+                color: $white;
+                font-size: 1em;
+            }
+       }
+    }
+    .form{
+        @include center_flex;
+        form{
+            @include center_flex;
+            @include flex_column;
+            margin:.5em 0;
+            input,textarea,button{
+                width: 300px;
+                height: 50px;
+                margin:.4em 0;
+                background: none;
+                border:none;
+            }
+            input,textarea{
+                @include Poppins;
+                padding-left: 0.45em;
+                font-weight: 600;
+                color:$silver;
+                
+            }
+            input{
+                height: 50px;
+                border-bottom:.25em solid $red;
+            }
+            textarea{
+                height: 150px;
+                border:.1125em solid $red;
+
+            }
+            button{
+                cursor: pointer;
+                color: $red;
+                font-weight: 900;
+                font-size: 2em;
+                position: relative;
+            }
+        }
+    }
+    .me{
+        @include center_flex;
+        background: $red_lighter;
+        font-weight: 900;
+        padding:.3em 0;
+        a{
+            color: $black;
+        }
+    }
+}
+
+
+// DEVICES
+
+@media only screen and (orientation:portrait) and (max-width:770px){
+    nav{
+        @include flex_column;
+        .name__website{
+            font-size: 1.7rem;
+        }
+        menu{
+            @include flex_column;
+            flex:1;
+            font-weight: 300;
+            .menu__content{
+                @include center_flex_evenly_text;
+                @include flex_column;
+                .menu__item{
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+    header{
+        h1{
+            font-size: 30px;
+        }
+    }
+    main{
+        width: 85vw;
+        h2{
+            font-size: 2.5em;
+        }
+        article{
+            margin:2em 0;
+        }
+    }
+    .start{
+        article{
+            grid-template-columns: repeat(1,1fr);
+            figure{
+                height: 150px;
+            }
+            .text{
+                border:.15em solid $red_lighter;
+                h3{
+                    font-size: 1.7em;
+                }
+                p{
+                    font-size: 1.1em;
+                }
+                a{
+                    font-size: 1.25em;
+                }
+            }
+        }
+    }
+    .firma,.walory,.doradztwo,.oferta{
+        article{
+            @include flex_column;
+            section{
+                @include center_flex;
+                width: 100%;
+                p{
+                    border:.15em solid $red_lighter;
+                }
+            }
+        }
+    }
+    footer{
+        .socials{
+            @include flex_column;
+            text-align: center;
+            .social::before,.social::after{
+            display: none;
+            }
+        }
+        address{
+            @include flex_column;
+        section{
+                margin:1em 0;
+        }
+        }
+        .form{
+            form{
+                input,textarea,button{
+                    width: 90%;
+                }
+                button{
+                    font-size: 1.45em;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (orientation:portrait) and (max-width:1024px){
+    nav{
+        @include flex_column;
+        .name__website{
+            font-size: 1.8rem;
+        }
+        menu{
+            @include flex_column;
+            flex:1;
+            font-weight: 300;
+            margin:1em 0;
+            .menu__content{
+                @include center_flex_evenly_text;
+                @include flex_column;
+                .menu__item{
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+    .start{
+        article{
+            grid-template-columns: repeat(1,1fr);
+            figure{
+                height: 150px;
+            }
+            .text{
+                border:.15em solid $red_lighter;
+                h3{
+                    font-size: 1.7em;
+                }
+                p{
+                    font-size: 1.1em;
+                }
+                a{
+                    font-size: 1.25em;
+                }
+            }
+        }
+    }
+    
+}
+@media only screen and (orientation:landscape) and (max-width:770px){
+    nav{
+        @include flex_column;
+        .name__website{
+            flex:1;
+            font-size: 1.7rem;
+        }
+        menu{
+            font-weight: 300;
+            flex:1;
+            .menu__content{
+                @include center_flex_evenly_text;
+                @include flex_column;
+                .menu__item{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+    main{
+        width: 85vw;
+        h2{
+            font-size: 2.5em;
+        }
+        article{
+            margin:2em 0;
+        }
+    }
+    .start{
+        article{
+            grid-template-columns: repeat(1,1fr);
+            figure{
+                height: 150px;
+            }
+            .text{
+                border:.15em solid $red_lighter;
+                h3{
+                    font-size: 1.7em;
+                }
+                p{
+                    font-size: 1.1em;
+                }
+                a{
+                    font-size: 1.25em;
+                }
+            }
+        }
+    }
+    .firma,.walory,.doradztwo,.oferta{
+        article{
+            @include flex_column;
+            section{
+                @include center_flex;
+                width: 100%;
+                p{
+                    border:.15em solid $red_lighter;
+                }
+            }
+        }
+    }
+    footer{
+        .socials{
+            font-size: 1.45em;
+            .social{
+                @include center_flex;
+                color: $red;
+            }
+        }
+        address{
+        section{
+                i{
+                    font-size: 1.5em;
+                }
+                a{
+                    font-size: 1em;
+                }
+        }
+        }
+    }
+}
+
+@media only screen and (orientation:landscape) and (max-width:1024px){
+    nav{
+        @include flex_column;
+        .name__website{
+            flex:1;
+            font-size: 1.7rem;
+        }
+        menu{
+            font-weight: 300;
+            flex:1;
+            .menu__content{
+                @include center_flex_evenly_text;
+                @include flex_column;
+                .menu__item{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+    .start{
+        .photos{
+            display: none;
+        }
+    }
+}
